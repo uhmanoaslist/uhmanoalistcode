@@ -1,7 +1,17 @@
 {
   "defaultAccounts": [
+<<<<<<< HEAD
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
     { "email": "john@foo.com", "password": "changeme"
+=======
+    { "email": "admin@foo.com", "password": "changeme", "phone": "808-426-5646",
+      "picture": "https://react.semantic-ui.com/images/wireframe/square-image.png",
+      "bio":  "I am the admin, hi.", "role": "admin"
+    },
+    { "email": "john@foo.com", "password": "changeme", "phone": "808-426-5646",
+      "picture": "http://www.apexskins.net/wp-content/uploads/2019/02/Hackthesystem-Pathfinder-1024x1024.jpg",
+      "bio":  "My name is John and I am a weeaboo"
+>>>>>>> master
     }
   ],
 
@@ -10,5 +20,17 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultItems": [
+    {
+      "name": "Basket", "price": 10.99, "quantity": 2, "seller": "john@foo.com",
+      "image": "http://www.hobbycraft.co.uk/supplyimages/593022_1000_1_800.jpg" ,
+      "description": "This is a basket. It is useful for holding things that your puny human hands probably can't hold."
+    },
+    { "name": "Bicycle", "price":  24.99, "quantity": 1, "seller": "john@foo.com",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/71m6KlzpDNL._SL1500_.jpg" ,
+      "description": "This is the bike that I used to try to ride bicycles, but I gave up so now I'm selling it. Please buy it, it's taking up space in my garage."
+    }
   ]
 }
