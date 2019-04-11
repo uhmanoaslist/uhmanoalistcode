@@ -1,8 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Loader } from 'semantic-ui-react';
 import { Listings } from '/imports/api/listing/listing';
-import StuffItem from '/imports/ui/components/StuffItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
@@ -18,9 +17,18 @@ class Item extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2">{this.props.doc.name}</Header>
-          <Header as="h2">{this.props.doc.price}</Header>
-          <Header as="h2">{this.props.doc.seller}</Header>
+          <Header as="h1">{this.props.doc.name}</Header>
+          <Grid>
+            <Grid.Column width={6}>
+              <Image src={this.props.doc.image} />
+            </Grid.Column>
+            <Grid.Column width={10}>
+              Price: <Header as="h3">{this.props.doc.price}</Header>
+              Seller: {this.props.doc.seller}
+              <br/>
+              Description: {this.props.doc.description}
+            </Grid.Column>
+          </Grid>
         </Container>
 
     );

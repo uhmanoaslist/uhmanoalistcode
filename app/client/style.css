@@ -1,0 +1,15 @@
+.uhmanoaslist-landing-page {
+  background: url('/images/landing2.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 500px;
+}
+
+.header {
+  font-size: 40pt;
+  color: black;
+}
+
+.header2 {
+  font-size: 30pt;
+  color: black;
+}

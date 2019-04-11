@@ -1,28 +1,25 @@
 import React from 'react';
-import { Grid, Menu } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
-    const menuStyle = { marginBottom: '10px' };
     return (
-        <Grid verticalAlign='middle' textAlign='center' container>
-          <Grid.Column width={8}>
-            <h1>Welcome to this template</h1>
-            <Menu style={menuStyle} attached="top" borderless>
 
-            {this.props.currentUser ? (
-                [<Menu.Item as={NavLink} activeClassName="active" exact to="/text" key='text'>Textbooks</Menu.Item>,
-                  <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>List Stuff</Menu.Item>]
-            ) : ''}
-            </Menu>
-          </Grid.Column>
-        </Grid>
+        <div className='uhmanoaslist-landing-page'>
+          <Grid container stackable centered columns={1}>
+
+            <Grid.Column textAlign='center'>
+              <h1 className='header' inverted>Welcome to UHManoasList</h1>
+              <h3 className='header2' inverted>Log in to sell and buy items!</h3>
+            </Grid.Column>
+          </Grid>
+        </div>
     );
   }
 }
@@ -37,5 +34,3 @@ const LandingContainer = withTracker(() => ({
 }))(Landing);
 
 export default withRouter(LandingContainer);
-
-
