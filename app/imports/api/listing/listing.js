@@ -9,7 +9,6 @@ const Listings = new Mongo.Collection('Listings');
 const ListingSchema = new SimpleSchema({
   name: String,
   price: Number,
-  quantity: Number,
   seller: String,
   image: String,
   description: String,
