@@ -10,7 +10,7 @@ class Landing extends React.Component {
 
             <Grid.Column textAlign='center'>
               <h1 className='header' inverted>Welcome to UHManoasList</h1>
-              <h3 className='header2' inverted>Feel free to buy and sell student related goods and services!</h3>
+              <h3 className='header2' inverted>Log in to sell and buy items!</h3>
             </Grid.Column>
           </Grid>
         </div>
