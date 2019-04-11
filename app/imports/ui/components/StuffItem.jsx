@@ -8,11 +8,11 @@ class StuffItem extends React.Component {
   render() {
     return (
         <Table.Row>
-          <Table.Cell>{this.props.stuff.name}</Table.Cell>
-          <Table.Cell>{this.props.stuff.quantity}</Table.Cell>
-          <Table.Cell>{this.props.stuff.condition}</Table.Cell>
+          <Table.Cell>{this.props.listing.name}</Table.Cell>
+          <Table.Cell>{this.props.listing.price}</Table.Cell>
+          <Table.Cell>{this.props.listing.seller}</Table.Cell>
           <Table.Cell>
-            <Link to={`/edit/${this.props.stuff._id}`}>Edit</Link>
+            <Link to={`/edit/${this.props.listing._id}`}>Edit</Link>
           </Table.Cell>
         </Table.Row>
     );
@@ -21,7 +21,7 @@ class StuffItem extends React.Component {
 
 /** Require a document to be passed to this component. */
 StuffItem.propTypes = {
-  stuff: PropTypes.object.isRequired,
+  listing: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
