@@ -10,7 +10,7 @@ import Landing from '../pages/Landing';
 import ListListing from '../pages/ListListing';
 import ListListingAdmin from '../pages/ListListingAdmin';
 import AddListing from '../pages/AddListing';
-import EditListing from '../pages/EditListing';
+import Item from '../pages/Item';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
@@ -29,8 +29,8 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/list" component={ListListing}/>
               <ProtectedRoute path="/add" component={AddListing}/>
-              <ProtectedRoute path="/edit/:_id" component={EditListing}/>
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
+              <ProtectedRoute path="/edit/:_id" component={Item}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
