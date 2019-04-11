@@ -1,9 +1,6 @@
 {
   "defaultAccounts": [
-<<<<<<< HEAD
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme"
-=======
+
     { "email": "admin@foo.com", "password": "changeme", "phone": "808-426-5646",
       "picture": "https://react.semantic-ui.com/images/wireframe/square-image.png",
       "bio":  "I am the admin, hi.", "role": "admin"
@@ -11,7 +8,6 @@
     { "email": "john@foo.com", "password": "changeme", "phone": "808-426-5646",
       "picture": "http://www.apexskins.net/wp-content/uploads/2019/02/Hackthesystem-Pathfinder-1024x1024.jpg",
       "bio":  "My name is John and I am a weeaboo"
->>>>>>> master
     }
   ],
 

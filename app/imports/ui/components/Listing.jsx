@@ -10,7 +10,7 @@ class Listing extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.listing.image} />
+            <Image floated='center' size='large' src={this.props.listing.image} />
             <Card.Header>{this.props.listing.name} </Card.Header>
             <Card.Meta> ${this.props.listing.price}</Card.Meta>
             <Card.Meta>{this.props.listing.seller}</Card.Meta>
@@ -19,7 +19,7 @@ class Listing extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Link to={`/edit/${this.props.listing._id}`}>Edit</Link>
+            <Link to={`/edit/${this.props.listing._id}`}>Buy</Link>
           </Card.Content>
         </Card>
 
