@@ -4,20 +4,18 @@ import { Listings, ListingSchema } from '/imports/api/listing/listing';
 import { Bert } from 'meteor/themeteorchef:bert';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
-import NumField from 'uniforms-semantic/NumField';
 import HiddenField from 'uniforms-semantic/HiddenField';
-import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
 /** Renders the Page for editing a single document. */
-class EditListing extends React.Component {
+class Report extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, price, seller, image, description, _id } = data;
-    Listings.update(_id, { $set: { name, price, seller, image, description } }, (error) => (error ?
+    const { description, seller, _id } = data;
+    Listings.update(_id, { $set: { description, seller } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -46,7 +44,7 @@ class EditListing extends React.Component {
 }
 
 /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
-EditListing.propTypes = {
+Report.propTypes = {
   doc: PropTypes.object,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
@@ -57,9 +55,9 @@ export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
   const documentId = match.params._id;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Listings');
+  const subscription = Meteor.subscribe('Reports');
   return {
     doc: Listings.findOne(documentId),
     ready: subscription.ready(),
   };
-})(EditListing);
+})(Report);
