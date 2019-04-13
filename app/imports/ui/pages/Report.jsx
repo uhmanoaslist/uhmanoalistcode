@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Loader, Header, Segment } from 'semantic-ui-react';
-import { Listings, ListingSchema } from '/imports/api/listing/listing';
+import { Reports, ReportSchema } from '/imports/api/report/report';
 import { Bert } from 'meteor/themeteorchef:bert';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
@@ -15,7 +15,7 @@ class Report extends React.Component {
   /** On successful submit, insert the data. */
   submit(data) {
     const { description, seller, _id } = data;
-    Listings.update(_id, { $set: { description, seller } }, (error) => (error ?
+    Reports.update(_id, { $set: { description, seller } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -31,7 +31,7 @@ class Report extends React.Component {
         <Grid container centered>
           <Grid.Column>
             <Header as="h2" textAlign="center">Report an Item</Header>
-            <AutoForm schema={ListingSchema} onSubmit={this.submit} model={this.props.doc}>
+            <AutoForm schema={ReportSchema} onSubmit={this.submit} model={this.props.doc}>
               <Segment>
                 <TextField name='description'/>
                 <HiddenField name='seller' value='fakeuser@foo.com'/>
@@ -57,7 +57,7 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Reports');
   return {
-    doc: Listings.findOne(documentId),
+    doc: Reports.findOne(documentId),
     ready: subscription.ready(),
   };
 })(Report);
