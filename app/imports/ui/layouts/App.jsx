@@ -12,9 +12,11 @@ import ListListing from '../pages/ListListing';
 import ListListingAdmin from '../pages/ListListingAdmin';
 import AddListing from '../pages/AddListing';
 import Item from '../pages/Item';
+import UserProfile from '../pages/UserProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
+import Report from '../pages/Report';
 import Signout from '../pages/Signout';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -31,8 +33,10 @@ class App extends React.Component {
               <ProtectedRoute path="/add" component={SellanItem}/>
               <ProtectedRoute path="/list" component={ListListing}/>
               <ProtectedRoute path="/add" component={AddListing}/>
-              <ProtectedRoute path="/edit/:_id" component={Item}/>
+              <ProtectedRoute path="/user/:email" component={UserProfile}/>
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
+              <ProtectedRoute path="/edit/:_id" component={Item}/>
+              <ProtectedRoute path="/report" component={Report}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
