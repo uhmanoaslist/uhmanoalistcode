@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter, NavLink, Link } from 'react-router-dom';
 import { Menu, Dropdown, Header } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
@@ -31,8 +31,8 @@ class NavBar extends React.Component {
                   </Dropdown.Menu>
                 </Dropdown>
             ) : (
-                [<Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='user'>
-                  {this.props.currentUser}
+                [<Menu.Item key='user'>
+                  <Link to={`/user/${this.props.currentUser}`}>{this.props.currentUser}</Link>
                 </Menu.Item>,
                   <Dropdown pointing="top right" icon={'user'} key='signout'>
                     <Dropdown.Menu>

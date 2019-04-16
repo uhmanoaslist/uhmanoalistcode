@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Grid, Image, Header, Loader } from 'semantic-ui-react';
-import { Accounts } from 'meteor/accounts-base';
+import { Profiles } from '/imports/api/profile/profile';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
@@ -20,11 +20,11 @@ class UserProfile extends React.Component {
           <Header as="h1">{this.props.doc.name}</Header>
           <Grid>
             <Grid.Column width={12}>
-              Username: {this.props.doc.name}
+              Username: {this.props.doc.username}
               <br/>
               Phone Number: {this.props.doc.phone}
               <br/>
-              Email: {this.props.doc.name}
+              Email: {this.props.doc.email}
             </Grid.Column>
             <Grid.Column width={4}>
               <Image src={this.props.doc.picture} size='small' />
@@ -47,11 +47,11 @@ UserProfile.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(({ match }) => {
   // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const documentId = match.params._id;
+  const user = match.params.email;
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Accounts');
+  const subscription = Meteor.subscribe('Profiles');
   return {
-    doc: Accounts.findOne(documentId),
+    doc: Profiles.findOne(user._id),
     ready: subscription.ready(),
   };
 })(UserProfile);
