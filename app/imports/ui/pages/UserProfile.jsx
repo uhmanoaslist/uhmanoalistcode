@@ -20,16 +20,15 @@ class UserProfile extends React.Component {
           <Header as="h1">{this.props.doc.name}</Header>
           <Grid>
             <Grid.Column width={12}>
-              Username: {this.props.doc.username}
+              <Header as="h4">Username:</Header> {this.props.doc.username}
               <br/>
-              Phone Number: {this.props.doc.phone}
+                <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
               <br/>
-              Email: {this.props.doc.email}
+              <Header as="h4">Email:</Header> {this.props.doc.email}
             </Grid.Column>
             <Grid.Column width={4}>
               <Image src={this.props.doc.picture} size='small' />
-              <br/>
-              Bio: {this.props.doc.bio}
+              <Header as="h4">Bio:</Header> {this.props.doc.bio}
             </Grid.Column>
           </Grid>
         </Container>
@@ -51,7 +50,7 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Profiles');
   return {
-    doc: Profiles.findOne(user._id),
+    doc: Profiles.findOne({ email: user }),
     ready: subscription.ready(),
   };
 })(UserProfile);
