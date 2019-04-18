@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Card, Header, Loader } from 'semantic-ui-react';
+import { Container, Card, Header, Link } from 'semantic-ui-react';
 import { Listings } from '/imports/api/listing/listing';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -11,16 +11,18 @@ class ListCategories extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
-  }
-
-  /** Render the page once subscriptions have been received. */
-  renderPage() {
     return (
         <Container>
           <Header as="h2" textAlign="center">List Items</Header>
           <Card.Group itemsPerRow={3}>
-            {this.props.listings.map((listing, index) => <Listing key={index} listing={listing}/>)}
+            <Card.Header>BUY</Card.Header>
+            <Card.Meta>Buy Items</Card.Meta>
+            <Card.Description>
+              Look around to buy
+            </Card.Description>
+          <Card.Content extra>
+            <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
+          </Card.Content>
           </Card.Group>
         </Container>
     );
