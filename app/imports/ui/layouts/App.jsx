@@ -8,6 +8,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListListing from '../pages/ListListing';
+import Category from '../pages/Category';
 import ListListingAdmin from '../pages/ListListingAdmin';
 import AddListing from '../pages/AddListing';
 import Item from '../pages/Item';
@@ -32,6 +33,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListListing}/>
               <ProtectedRoute path="/add" component={AddListing}/>
               <ProtectedRoute path="/user/:email" component={UserProfile}/>
+              <ProtectedRoute path="/category/:category" component={Category}/>
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
               <ProtectedRoute path="/edit/:_id" component={Item}/>
               <ProtectedRoute path="/report" component={Report}/>
