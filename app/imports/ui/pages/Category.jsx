@@ -18,7 +18,7 @@ class Category extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Items</Header>
+          <Header as="h2" textAlign="center">{this.props.doc}</Header>
           <Card.Group itemsPerRow={3}>
             {this.props.listings.map((listing, index) => <Listing key={index} listing={listing}/>)}
           </Card.Group>
