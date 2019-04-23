@@ -10,7 +10,7 @@ class Categories extends React.Component {
   render() {
     return (
         <Container>
-          <Header as="h2">Categories</Header>
+          <Header as="h2" textAlign="center">Categories</Header>
           <Grid columns={2} divided>
             <Grid.Row>
               <Grid.Column textAlign="center">
@@ -33,20 +33,20 @@ class Categories extends React.Component {
                 <Link to={'/category/Electronics'}>Electronics</Link>
               </Grid.Column>
               <Grid.Column textAlign="center">
-                <Link to={'/category/Electronic_Accessories'}>Electronic Accessories</Link>
+                <Link to={'/category/Electronic Accessories'}>Electronic Accessories</Link>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign="center">
-                <Link to={'/category/Mens_Clothing'}>Mens Clothing</Link>
+                <Link to={'/category/Mens Clothing'}>Mens Clothing</Link>
               </Grid.Column>
               <Grid.Column textAlign="center">
-                <Link to={'/category/Womens_Clothing'}>Womens Clothing</Link>
+                <Link to={'/category/Womens Clothing'}>Womens Clothing</Link>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign="center">
-                <Link to={'/category/Sporting_Goods'}>Sporting Goods</Link>
+                <Link to={'/category/Sporting Goods'}>Sporting Goods</Link>
               </Grid.Column>
               <Grid.Column textAlign="center">
                 <Link to={'/category/Miscellaneous'}>Miscellaneous</Link>
