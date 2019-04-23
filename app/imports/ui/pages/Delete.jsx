@@ -1,37 +1,16 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Image, Header, Loader, Table, Button } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Loader } from 'semantic-ui-react';
 import { Profiles } from '/imports/api/profile/profile';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class UserProfile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onClick = this.onClick.bind(this);
-  }
 
-  deleteCallback(error) {
-    if (error) {
-      Bert.alert({ type: 'danger', message: 'Delete failed: $(error.message}' });
-    } else {
-      Bert.alert({ type: 'danger', message: 'Delete succeeded' });
-    }
-    }
-  }
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>,
-    <Table.Row>
-      <Table.Cell>{this.props.name}</Table.Cell>
-      <Table.Cell>{this.props.price}</Table.Cell>
-      <Table.Cell>{this.props.description}</Table.Cell>
-      <Table.Cell>
-        <Button basic onClick={this.onClick}>Delete</Button>
-      </Table.Cell>
-    </Table.Row>;
+    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   /** Render the page once subscriptions have been received. */
@@ -43,7 +22,7 @@ class UserProfile extends React.Component {
             <Grid.Column width={12}>
               <Header as="h4">Username:</Header> {this.props.doc.username}
               <br/>
-                <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
+              <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
               <br/>
               <Header as="h4">Email:</Header> {this.props.doc.email}
             </Grid.Column>
