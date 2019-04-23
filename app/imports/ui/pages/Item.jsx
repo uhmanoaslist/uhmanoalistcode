@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Grid, Image, Header, Loader } from 'semantic-ui-react';
 import { Listings } from '/imports/api/listing/listing';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -24,7 +25,7 @@ class Item extends React.Component {
             </Grid.Column>
             <Grid.Column width={10}>
               Price: <Header as="h3">{this.props.doc.price}</Header>
-              Seller: {this.props.doc.seller}
+              Seller: <Link to={`/user/${this.props.doc.seller}`}>{this.props.doc.seller}</Link>
               <br/>
               Description: {this.props.doc.description}
             </Grid.Column>

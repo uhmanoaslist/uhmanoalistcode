@@ -1,8 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Grid, Image, Header, Loader } from 'semantic-ui-react';
+import { Container, Grid, Image, Header, Loader, Card } from 'semantic-ui-react';
+import { Listings } from '/imports/api/listing/listing';
 import { Profiles } from '/imports/api/profile/profile';
 import { withTracker } from 'meteor/react-meteor-data';
+import Listing from '/imports/ui/components/Listing';
+
 import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -31,8 +34,13 @@ class UserProfile extends React.Component {
               <Header as="h4">Bio:</Header> {this.props.doc.bio}
             </Grid.Column>
           </Grid>
+          <Header as="h1">Items this user sold:</Header>
+          <Container>
+            <Card.Group itemsPerRow={3}>
+              {this.props.listings.map((listing, index) => <Listing key={index} listing={listing}/>)}
+            </Card.Group>
+          </Container>
         </Container>
-
     );
   }
 }
@@ -40,6 +48,7 @@ class UserProfile extends React.Component {
 /** Require an array of Stuff documents in the props. */
 UserProfile.propTypes = {
   doc: PropTypes.object,
+  listings: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -49,8 +58,10 @@ export default withTracker(({ match }) => {
   const user = match.params.email;
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Profiles');
+  const subscription2 = Meteor.subscribe('Listings');
   return {
     doc: Profiles.findOne({ email: user }),
-    ready: subscription.ready(),
+    listings: Listings.find({ seller: user }).fetch(),
+    ready: (subscription.ready() && subscription2.ready()),
   };
 })(UserProfile);
