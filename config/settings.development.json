@@ -21,8 +21,10 @@
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
   "defaultReports": [
-    { "seller": "Koby", "description": "Illegal item" },
-    { "seller": "Braden", "description": "selling fireworks" }
+    { "seller": "Koby", "description": "Illegal Drugs" },
+    { "seller": "Braden", "description": "Shooting fireworks in elevator" },
+    { "seller": "Mark", "description": "Popping fireworks in dorm" },
+    { "seller": "Henry", "description": "Jaywalking" }
   ],
   "defaultItems": [
     {

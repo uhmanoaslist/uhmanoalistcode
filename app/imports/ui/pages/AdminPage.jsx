@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Table, Header, Loader } from 'semantic-ui-react';
-import { Stuffs } from '/imports/api/stuff/stuff';
-import AdminPageItem from '/imports/ui/components/AdminPageItem';
+import { Reports, ReportSchema } from '/imports/api/report/report';
+import Report from '/imports/ui/components/Report';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
@@ -18,7 +18,7 @@ class AdminPage extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">Admin (Users/Items)</Header>
+          <Header as="h2" textAlign="center">Admin</Header>
           <Table celled>
             <Table.Header>
               <Table.Row>
@@ -27,7 +27,7 @@ class AdminPage extends React.Component {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              /*Holds the default data containing flagged users and items, must change stuff to the default admin data*/
+              {this.props.reports.map((report) => <Report key={report._id} report={report} />)}
             </Table.Body>
           </Table>
         </Container>
@@ -39,16 +39,16 @@ class AdminPage extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 AdminPage.propTypes = {
-  stuffs: PropTypes.array.isRequired,
+  reports: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('StuffAdmin');
+  const subscription = Meteor.subscribe('Reports');
   return {
-    stuffs: Stuffs.find({}).fetch(),
+    reports: Reports.find({}).fetch(),
     ready: subscription.ready(),
   };
 })(AdminPage);
