@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { Profiles } from '/imports/api/profile/profile';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink, Link } from 'react-router-dom';
 import { Menu, Dropdown, Header } from 'semantic-ui-react';
