@@ -26,7 +26,6 @@ class Item extends React.Component {
             </Grid.Column>
             <Grid.Column width={10}>
               Price: <Header as="h2">{this.props.doc.price}</Header>
-              Seller: <Link to={`/user/${this.props.doc.seller}`}>{this.props.doc.seller}</Link>
               <Header as="h3">Contact Information:</Header>
               Username: {this.props.seller.username}
               <br/>
@@ -35,6 +34,8 @@ class Item extends React.Component {
               Phone Number: {this.props.seller.phone}
               <br/>
               Email: {this.props.seller.email}
+              <br/>
+              <Link to={`/user/${this.props.doc.seller}`}>{this.props.seller.username} Profile Page</Link>
               <br/>
               <br/>
               Description: {this.props.doc.description}
@@ -50,7 +51,7 @@ class Item extends React.Component {
 /** Require an array of Stuff documents in the props. */
 Item.propTypes = {
   doc: PropTypes.object,
-  seller: PropTypes.object,
+  seller: PropTypes.object.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -61,9 +62,10 @@ export default withTracker(({ match }) => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Listings');
   const subscription2 = Meteor.subscribe('Profiles');
+  const item = Listings.findOne(documentId);
   return {
-    doc: Listings.findOne(documentId),
-    seller: Profiles.findOne({ email: (Listings.findOne(documentId)).seller }),
+    doc: item,
+    seller: Profiles.findOne({ email: item.seller }),
     ready: (subscription.ready() && subscription2.ready()),
   };
 })(Item);
