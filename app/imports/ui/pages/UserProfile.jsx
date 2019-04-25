@@ -20,9 +20,9 @@ class UserProfile extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h1">{this.props.doc.name}</Header>
           <Grid>
             <Grid.Column width={12}>
+              <Header as="h1">{this.props.doc.name}</Header>
               <Header as="h4">Username:</Header> {this.props.doc.username}
               <br/>
               <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
@@ -30,7 +30,7 @@ class UserProfile extends React.Component {
               <Header as="h4">Email:</Header> {this.props.doc.email}
             </Grid.Column>
             <Grid.Column width={4}>
-              <Image src={this.props.doc.picture} size='small'/>
+              <Image src={this.props.doc.picture} size='medium'/>
               <Header as="h4">Bio:</Header> {this.props.doc.bio}
             </Grid.Column>
           </Grid>

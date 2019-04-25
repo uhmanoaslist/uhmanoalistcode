@@ -21,15 +21,18 @@ class Item extends React.Component {
           <Header as="h1">{this.props.doc.name}</Header>
           <Grid>
             <Grid.Column width={6}>
-              <Image src={this.props.doc.image} />
+              <Image src={this.props.doc.image} size='big' />
             </Grid.Column>
             <Grid.Column width={10}>
-              Price: <Header as="h3">{this.props.doc.price}</Header>
+              Price: <Header as="h2">{this.props.doc.price}</Header>
               Seller: <Link to={`/user/${this.props.doc.seller}`}>{this.props.doc.seller}</Link>
+              <br/>
               <br/>
               Description: {this.props.doc.description}
             </Grid.Column>
           </Grid>
+          <br/>
+          Category: {this.props.doc.category}
         </Container>
 
     );
