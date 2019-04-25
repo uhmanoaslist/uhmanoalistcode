@@ -29,22 +29,28 @@ class EditListing extends React.Component {
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   renderPage() {
+    if (this.props.currentUser === this.props.doc.seller) {
+
+      return (
+          <Grid container centered>
+            <Grid.Column>
+              <Header as="h2" textAlign="center">Edit Listing</Header>
+              <AutoForm schema={ListingSchema} onSubmit={this.submit} model={this.props.doc}>
+                <Segment>
+                  <TextField name='name'/>
+                  <NumField name='price' decimal={true}/>
+                  <TextField name='image'/>
+                  <TextField name='description'/>
+                  <ErrorsField/>
+                  <HiddenField name='seller' value='fakeuser@foo.com'/>
+                </Segment>
+              </AutoForm>
+            </Grid.Column>
+          </Grid>
+      );
+    }
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Edit Listing</Header>
-            <AutoForm schema={ListingSchema} onSubmit={this.submit} model={this.props.doc}>
-              <Segment>
-                <TextField name='name'/>
-                <NumField name='price' decimal={true}/>
-                <TextField name='image'/>
-                <TextField name='description'/>
-                <ErrorsField/>
-                <HiddenField name='seller' value='fakeuser@foo.com'/>
-              </Segment>
-            </AutoForm>
-          </Grid.Column>
-        </Grid>
+        <Header as="h2" textAlign="center">You are not allowed to edit this listing</Header>
     );
   }
 }
@@ -52,6 +58,7 @@ class EditListing extends React.Component {
 /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
 EditListing.propTypes = {
   doc: PropTypes.object,
+  currentUser: PropTypes.string,
   model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
@@ -64,6 +71,7 @@ export default withTracker(({ match }) => {
   const subscription = Meteor.subscribe('Listings');
   return {
     doc: Listings.findOne(documentId),
+    currentUser: Meteor.user() ? Meteor.user().username : '',
     ready: subscription.ready(),
   };
 })(EditListing);

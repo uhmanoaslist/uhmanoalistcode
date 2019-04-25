@@ -25,12 +25,12 @@ class UserProfile extends React.Component {
             <Grid.Column width={12}>
               <Header as="h4">Username:</Header> {this.props.doc.username}
               <br/>
-                <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
+              <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
               <br/>
               <Header as="h4">Email:</Header> {this.props.doc.email}
             </Grid.Column>
             <Grid.Column width={4}>
-              <Image src={this.props.doc.picture} size='small' />
+              <Image src={this.props.doc.picture} size='small'/>
               <Header as="h4">Bio:</Header> {this.props.doc.bio}
             </Grid.Column>
           </Grid>
@@ -48,6 +48,7 @@ class UserProfile extends React.Component {
 /** Require an array of Stuff documents in the props. */
 UserProfile.propTypes = {
   doc: PropTypes.object,
+  currentUser: PropTypes.string,
   listings: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -62,6 +63,7 @@ export default withTracker(({ match }) => {
   return {
     doc: Profiles.findOne({ email: user }),
     listings: Listings.find({ seller: user }).fetch(),
+    currentUser: Meteor.user() ? Meteor.user().username : '',
     ready: (subscription.ready() && subscription2.ready()),
   };
 })(UserProfile);

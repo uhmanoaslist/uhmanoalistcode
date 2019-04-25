@@ -12,6 +12,7 @@ import Categories from '../pages/Categories';
 import ListListingAdmin from '../pages/ListListingAdmin';
 import AddListing from '../pages/AddListing';
 import Item from '../pages/Item';
+import EditListing from '../pages/EditListing';
 import UserProfile from '../pages/UserProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -35,7 +36,8 @@ class App extends React.Component {
               <ProtectedRoute path="/user/:email" component={UserProfile}/>
               <ProtectedRoute path="/category/:category" component={Category}/>
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
-              <ProtectedRoute path="/edit/:_id" component={Item}/>
+              <ProtectedRoute path="/edit/:_id" component={EditListing}/>
+              <ProtectedRoute path="/view/:_id" component={Item}/>
               <ProtectedRoute path="/report" component={Report}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
