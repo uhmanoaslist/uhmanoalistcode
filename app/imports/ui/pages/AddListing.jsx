@@ -3,6 +3,7 @@ import { Listings, ListingSchema } from '/imports/api/listing/listing';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
+import LongTextField from 'uniforms-semantic/LongTextField';
 import SelectField from 'uniforms-semantic/SelectField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import NumField from 'uniforms-semantic/NumField';
@@ -50,7 +51,7 @@ class AddListing extends React.Component {
                 <TextField name='name'/>
                 <NumField name='price' decimal={true}/>
                 <TextField name='image'/>
-                <TextField name='description'/>
+                <LongTextField name='description'/>
                 <SelectField name='category'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>

@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Grid, Image, Header, Loader, Card } from 'semantic-ui-react';
 import { Listings } from '/imports/api/listing/listing';
 import { Profiles } from '/imports/api/profile/profile';
+import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import Listing from '/imports/ui/components/Listing';
 
@@ -18,6 +19,33 @@ class UserProfile extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    if (this.props.currentUser === this.props.doc.email) {
+      return (
+          <Container>
+            <Grid>
+              <Grid.Column width={12}>
+                <Header as="h1">{this.props.doc.name}</Header>
+                <Link to={`/editprofile/${this.props.doc.email}`}>Edit Profile</Link>
+                <Header as="h4">Username:</Header> {this.props.doc.username}
+                <br/>
+                <Header as="h4">Phone Number:</Header> {this.props.doc.phone}
+                <br/>
+                <Header as="h4">Email:</Header> {this.props.doc.email}
+              </Grid.Column>
+              <Grid.Column width={4}>
+                <Image src={this.props.doc.picture} size='medium'/>
+                <Header as="h4">Bio:</Header> {this.props.doc.bio}
+              </Grid.Column>
+            </Grid>
+            <Header as="h1">Items this user sold:</Header>
+            <Container>
+              <Card.Group itemsPerRow={3}>
+                {this.props.listings.map((listing, index) => <Listing key={index} listing={listing}/>)}
+              </Card.Group>
+            </Container>
+          </Container>
+      );
+    }
     return (
         <Container>
           <Grid>
