@@ -100,4 +100,3 @@ AdminProtectedRoute.propTypes = {
 };
 
 export default App;
-
