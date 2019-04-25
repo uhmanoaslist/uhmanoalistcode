@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Grid, Image, Header, Loader } from 'semantic-ui-react';
 import { Listings } from '/imports/api/listing/listing';
+import { Profiles } from '/imports/api/profile/profile';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -26,6 +27,14 @@ class Item extends React.Component {
             <Grid.Column width={10}>
               Price: <Header as="h2">{this.props.doc.price}</Header>
               Seller: <Link to={`/user/${this.props.doc.seller}`}>{this.props.doc.seller}</Link>
+              <Header as="h3">Contact Information:</Header>
+              Username: {this.props.seller.username}
+              <br/>
+              Name: {this.props.seller.name}
+              <br/>
+              Phone Number: {this.props.seller.phone}
+              <br/>
+              Email: {this.props.seller.email}
               <br/>
               <br/>
               Description: {this.props.doc.description}
@@ -34,7 +43,6 @@ class Item extends React.Component {
           <br/>
           Category: {this.props.doc.category}
         </Container>
-
     );
   }
 }
@@ -42,6 +50,7 @@ class Item extends React.Component {
 /** Require an array of Stuff documents in the props. */
 Item.propTypes = {
   doc: PropTypes.object,
+  seller: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -51,8 +60,10 @@ export default withTracker(({ match }) => {
   const documentId = match.params._id;
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Listings');
+  const subscription2 = Meteor.subscribe('Profiles');
   return {
     doc: Listings.findOne(documentId),
-    ready: subscription.ready(),
+    seller: Profiles.findOne({ email: (Listings.findOne(documentId)).seller }),
+    ready: (subscription.ready() && subscription2.ready()),
   };
 })(Item);
