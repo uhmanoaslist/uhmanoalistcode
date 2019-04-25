@@ -9,17 +9,17 @@ function addData(data) {
 
 /** Initialize the collection if empty. */
 if (Reports.find().count() === 0) {
-  if (Meteor.settings.defaultItems) {
+  if (Meteor.settings.defaultReports) {
     console.log('Creating default items.');
-    Meteor.settings.defaultItems.map(data => addData(data));
+    Meteor.settings.defaultReports.map(data => addData(data));
   }
 }
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Reports', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Reports.find({ seller: username });
+    // const username = Meteor.users.findOne(this.userId).username;
+    return Reports.find();
   }
   return this.ready();
 });
