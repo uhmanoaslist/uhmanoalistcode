@@ -35,7 +35,7 @@ class DeleteListing extends React.Component {
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
   render() {
     return (
-        <Button basic onClick={this.onClick}>Delete</Button>
+        <Button basic onClick={this.onClick}>Confirm to delete</Button>
     );
   }
 }
@@ -55,4 +55,3 @@ export default withTracker(() => {
     ready: subscription.ready(),
   };
 })(DeleteListing);
-
