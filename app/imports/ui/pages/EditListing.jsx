@@ -6,7 +6,9 @@ import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
 import NumField from 'uniforms-semantic/NumField';
 import HiddenField from 'uniforms-semantic/HiddenField';
+import SelectField from 'uniforms-semantic/SelectField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
+import SubmitField from 'uniforms-semantic/SubmitField';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
@@ -16,8 +18,8 @@ class EditListing extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, price, seller, image, description, _id } = data;
-    Listings.update(_id, { $set: { name, price, seller, image, description } }, (error) => (error ?
+    const { name, price, image, description, category, _id } = data;
+    Listings.update(_id, { $set: { name, price, image, description, category } }, (error) => (error ?
         Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
         Bert.alert({ type: 'success', message: 'Update succeeded' })));
   }
@@ -41,6 +43,8 @@ class EditListing extends React.Component {
                   <NumField name='price' decimal={true}/>
                   <TextField name='image'/>
                   <TextField name='description'/>
+                  <SelectField name='category'/>
+                  <SubmitField value='Submit'/>
                   <ErrorsField/>
                   <HiddenField name='seller' value='fakeuser@foo.com'/>
                 </Segment>
