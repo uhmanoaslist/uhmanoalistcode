@@ -8,8 +8,8 @@ class Report extends React.Component {
   render() {
     return (
         <Table.Row>
-          <Table.Cell>{this.props.report.seller}</Table.Cell> /*Change to flagged users*/
-          <Table.Cell>{this.props.report.description}</Table.Cell>/*Change to flagged items*/
+          <Table.Cell>{this.props.report.seller}</Table.Cell> {/*Change to flagged users*/}
+          <Table.Cell>{this.props.report.description}</Table.Cell> {/*Change to flagged items*/}
         </Table.Row>
     );
   }
