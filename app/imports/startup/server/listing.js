@@ -19,8 +19,7 @@ if (Listings.find().count() === 0) {
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Listings', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Listings.find({ seller: username });
+    return Listings.find();
   }
   return this.ready();
 });

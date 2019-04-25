@@ -12,6 +12,13 @@ const ListingSchema = new SimpleSchema({
   seller: String,
   image: String,
   description: String,
+  category: {
+    type: String,
+    allowedValues: ['Furniture', 'Textbooks', 'School Supplies', 'Electronics',
+      'Electronic Accessories', 'Transportation', 'Sporting Goods',
+      'Mens Clothing', 'Womens Clothing', 'Miscellaneous'],
+    defaultValue: 'Miscellaneous',
+  },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

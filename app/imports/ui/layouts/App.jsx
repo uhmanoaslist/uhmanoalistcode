@@ -7,7 +7,8 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
-import ListListing from '../pages/ListListing';
+import Category from '../pages/Category';
+import Categories from '../pages/Categories';
 import ListListingAdmin from '../pages/ListListingAdmin';
 import AddListing from '../pages/AddListing';
 import Item from '../pages/Item';
@@ -18,6 +19,7 @@ import Signup from '../pages/Signup';
 import Report from '../pages/Report';
 import Signout from '../pages/Signout';
 import AdminPage from '../pages/AdminPage';
+import ListReports from '../pages/ListReports';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -30,11 +32,12 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <ProtectedRoute path="/list" component={ListListing}/>
+              <ProtectedRoute path="/list" component={Categories}/>
               <ProtectedRoute path="/add" component={AddListing}/>
               <ProtectedRoute path="/user/:email" component={UserProfile}/>
+              <ProtectedRoute path="/category/:category" component={Category}/>
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
-              <AdminProtectedRoute path="/adminprofile" component={AdminPage}/>
+              <AdminProtectedRoute path="/adminreports" component={ListReports}/>
               <ProtectedRoute path="/edit/:_id" component={Item}/>
               <ProtectedRoute path="/report" component={Report}/>
               <ProtectedRoute path="/signout" component={Signout}/>
@@ -97,4 +100,3 @@ AdminProtectedRoute.propTypes = {
 };
 
 export default App;
-

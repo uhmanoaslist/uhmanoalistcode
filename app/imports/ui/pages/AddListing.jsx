@@ -3,6 +3,7 @@ import { Listings, ListingSchema } from '/imports/api/listing/listing';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import TextField from 'uniforms-semantic/TextField';
+import SelectField from 'uniforms-semantic/SelectField';
 import SubmitField from 'uniforms-semantic/SubmitField';
 import NumField from 'uniforms-semantic/NumField';
 import HiddenField from 'uniforms-semantic/HiddenField';
@@ -33,9 +34,9 @@ class AddListing extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { name, price, image, description } = data;
+    const { name, price, image, description, category } = data;
     const seller = Meteor.user().username;
-    Listings.insert({ name, price, seller, image, description }, this.insertCallback);
+    Listings.insert({ name, price, seller, image, description, category }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -50,6 +51,7 @@ class AddListing extends React.Component {
                 <NumField name='price' decimal={true}/>
                 <TextField name='image'/>
                 <TextField name='description'/>
+                <SelectField name='category'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
                 <HiddenField name='seller' value='fakeuser@foo.com'/>
