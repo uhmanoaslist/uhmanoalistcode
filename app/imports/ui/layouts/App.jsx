@@ -11,6 +11,7 @@ import Category from '../pages/Category';
 import Categories from '../pages/Categories';
 import ListListingAdmin from '../pages/ListListingAdmin';
 import AddListing from '../pages/AddListing';
+import DeleteListing from '../pages/DeleteListing';
 import Item from '../pages/Item';
 import EditListing from '../pages/EditListing';
 import EditProfile from '../pages/EditProfile';
@@ -38,6 +39,7 @@ class App extends React.Component {
               <ProtectedRoute path="/category/:category" component={Category}/>
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
               <ProtectedRoute path="/edit/:_id" component={EditListing}/>
+              <ProtectedRoute path="/delete/:_id" component={DeleteListing}/>
               <ProtectedRoute path="/editprofile/:email" component={EditProfile}/>
               <ProtectedRoute path="/view/:_id" component={Item}/>
               <ProtectedRoute path="/report" component={Report}/>

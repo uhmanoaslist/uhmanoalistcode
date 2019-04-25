@@ -26,6 +26,9 @@ class Listing extends React.Component {
             <Card.Content extra>
               <Link to={`/edit/${this.props.listing._id}`}>Edit</Link>
             </Card.Content>
+            <Card.Content extra>
+              <Link to={`/delete/${this.props.listing._id}`}>Delete</Link>
+            </Card.Content>
           </Card>
       );
     }
