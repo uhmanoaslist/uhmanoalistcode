@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
+import { Card } from 'semantic-ui-react/dist/commonjs/views/Card';
+import PropTypes from 'prop-types';
+import { Profiles } from '/imports/api/profile/profile';
+
+
 
 /**
  * Signup component is similar to signin component, but we attempt to create a new user instead.
@@ -29,7 +34,7 @@ export default class Signup extends React.Component {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        // browserHistory.push('/login');
+
       }
     });
   }
@@ -63,7 +68,7 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Submit"/>
+                  <Link to={`/editprofile/${this.props.doc.email}`}> <Form.Button content="Submit"/></Link>
                 </Segment>
               </Form>
               <Message>
@@ -84,3 +89,9 @@ export default class Signup extends React.Component {
     );
   }
 }
+/** Require an array of Stuff documents in the props. */
+Signup.propTypes = {
+  doc: PropTypes.object,
+  currentUser: PropTypes.string,
+  ready: PropTypes.bool.isRequired,
+};
