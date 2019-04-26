@@ -41,7 +41,7 @@ class App extends React.Component {
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
               <ProtectedRoute path="/edit/:_id" component={EditListing}/>
               <ProtectedRoute path="/editprofile/:email" component={EditProfile}/>
-              <ProtectedRoute path="/createprofile/:email" component={CreateProfile}/>
+              <ProtectedRoute path="/createprofile/_id" component={CreateProfile}/>
               <ProtectedRoute path="/view/:_id" component={Item}/>
               <AdminProtectedRoute path="/adminreports" component={ListReports}/>
               <ProtectedRoute path="/report" component={Report}/>
