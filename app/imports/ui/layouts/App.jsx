@@ -18,7 +18,7 @@ import UserProfile from '../pages/UserProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
-import Report from '../pages/Report';
+import Report from '../pages/AddReport';
 import Signout from '../pages/Signout';
 import ListReports from '../pages/ListReports';
 import CreateProfile from '../pages/CreateProfile';
