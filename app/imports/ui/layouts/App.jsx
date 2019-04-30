@@ -18,7 +18,6 @@ import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Report from '../pages/Report';
 import Signout from '../pages/Signout';
-import AdminPage from '../pages/AdminPage';
 import ListReports from '../pages/ListReports';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
