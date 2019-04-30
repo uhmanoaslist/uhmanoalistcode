@@ -22,7 +22,7 @@ class Item extends React.Component {
           <Header as="h1">{this.props.doc.name}</Header>
           <Grid>
             <Grid.Column width={6}>
-              <Image src={this.props.doc.image} size='big' />
+              <Image src={this.props.doc.image} size='big'/>
             </Grid.Column>
             <Grid.Column width={10}>
               Price: <Header as="h2">{this.props.doc.price}</Header>
@@ -63,9 +63,12 @@ export default withTracker(({ match }) => {
   const subscription = Meteor.subscribe('Listings');
   const subscription2 = Meteor.subscribe('Profiles');
   const item = Listings.findOne(documentId);
-  return {
-    doc: item,
-    seller: Profiles.findOne({ email: item.seller }),
-    ready: (subscription.ready() && subscription2.ready()),
-  };
+  console.log(item);
+  if (item !== undefined) {
+    return {
+      doc: item,
+      seller: Profiles.findOne({ email: item.seller }),
+      ready: (subscription.ready() && subscription2.ready()),
+    };
+  }
 })(Item);
