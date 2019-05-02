@@ -17,6 +17,38 @@ class Item extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    if (this.props.currentUser === this.props.doc.seller) {
+      return (
+          <Container>
+            <Header as="h1">{this.props.doc.name}</Header>
+            <Grid>
+              <Grid.Column width={7}>
+                <Image src={this.props.doc.image} size='big'/>
+                <br/>
+                Description: {this.props.doc.description}
+              </Grid.Column>
+              <Grid.Column width={9}>
+                Price: <Header as="h2">{this.props.doc.price}</Header>
+                <Link to={`/edit/${this.props.doc._id}`}>Edit Listing</Link>
+                <Header as="h3">Contact Information:</Header>
+                Username: {this.props.seller.username}
+                <br/>
+                Name: {this.props.seller.name}
+                <br/>
+                Phone Number: {this.props.seller.phone}
+                <br/>
+                Email: {this.props.seller.email}
+                <br/>
+                <Link to={`/user/${this.props.doc.seller}`}>{this.props.seller.username} Profile Page</Link>
+                <br/>
+                <Header as="h5">If you want to buy this item, contact the seller!</Header>
+                <br/>
+                Category: {this.props.doc.category}
+              </Grid.Column>
+            </Grid>
+          </Container>
+      );
+    }
     return (
         <Container>
           <Header as="h1">{this.props.doc.name}</Header>
@@ -52,6 +84,7 @@ class Item extends React.Component {
 /** Require an array of Stuff documents in the props. */
 Item.propTypes = {
   doc: PropTypes.object,
+  currentUser: PropTypes.string,
   seller: PropTypes.object.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -68,12 +101,14 @@ export default withTracker(({ match }) => {
     return {
       doc: item,
       seller: Profiles.findOne({ email: item.seller }),
+      currentUser: Meteor.user() ? Meteor.user().username : '',
       ready: (subscription.ready() && subscription2.ready()),
     };
   }
   return {
     doc: {},
     seller: {},
+    currentUser: Meteor.user() ? Meteor.user().username : '',
     ready: (subscription.ready() && subscription2.ready()),
   };
 })(Item);
