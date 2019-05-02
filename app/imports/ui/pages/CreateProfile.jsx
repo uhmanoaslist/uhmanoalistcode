@@ -9,71 +9,63 @@ import SubmitField from 'uniforms-semantic/SubmitField';
 import HiddenField from 'uniforms-semantic/HiddenField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 /** Renders the Page for editing a single document. */
 class CreateProfile extends React.Component {
-
-  /** On successful submit, insert the data. */
-  submit(data) {
-    const { name, username, phone, picture, bio, _id } = data;
-    Profiles.update(_id, { $set: { name, username, phone, picture, bio } }, (error) => (error ?
-        Bert.alert({ type: 'danger', message: `Update failed: ${error.message}` }) :
-        Bert.alert({ type: 'success', message: 'Update succeeded' })));
+  /** Bind 'this' so that a ref to the Form can be saved in formRef and communicated between render() and submit(). */
+  constructor(props) {
+    super(props);
+    this.state = { redirectToReferer: false };
+    this.submit = this.submit.bind(this);
+    this.insertCallback = this.insertCallback.bind(this);
+    this.formRef = null;
   }
 
-  /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
-  render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
+  /** Notify the user of the results of the submit. If successful, clear the form. */
+  insertCallback(error) {
+    if (error) {
+      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
+    } else {
+      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      this.formRef.reset();
+      this.setState({ redirectToReferer: true });
+    }
+  }
+
+  /** On submit, insert the data. */
+  submit(data) {
+    const { name, username, phone, picture, bio } = data;
+    const email = Meteor.user().username;
+    Profiles.insert({ name, username, email, phone, picture, bio }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
-  renderPage() {
-    if (this.props.currentUser === this.props.doc.email) {
-      return (
-          <Grid container centered>
-            <Grid.Column>
-              <Header as="h2" textAlign="center">Create Profile</Header>
-              <AutoForm schema={ProfileSchema} onSubmit={this.submit} model={this.props.doc}>
-                <Segment>
-                  <TextField name='name'/>
-                  <TextField name='username'/>
-                  <TextField name='phone'/>
-                  <TextField name='picture'/>
-                  <LongTextField name='bio'/>
-                  <SubmitField value='Submit'/>
-                  <ErrorsField/>
-                  <HiddenField name='email'/>
-                </Segment>
-              </AutoForm>
-            </Grid.Column>
-          </Grid>
-      );
+  render() {
+    if (this.state.redirectToReferer) {
+      return <Redirect to={'/'}/>;
     }
     return (
-        <Header as="h2" textAlign="center">You are not allowed to edit this profile</Header>
+        <Grid container centered>
+          <Grid.Column>
+            <Header as="h2" textAlign="center">Create Profile</Header>
+            <AutoForm ref={(ref) => { this.formRef = ref; }} schema={ProfileSchema} onSubmit={this.submit}>
+              <Segment>
+                <TextField name='name'/>
+                <TextField name='username'/>
+                <TextField name='phone'/>
+                <TextField name='picture'/>
+                <LongTextField name='bio'/>
+                <SubmitField value='Submit'/>
+                <ErrorsField/>
+                <HiddenField name='email' value='fakeuser@foo.com'/>
+              </Segment>
+            </AutoForm>
+          </Grid.Column>
+        </Grid>
     );
   }
+
 }
 
-/** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
-CreateProfile.propTypes = {
-  doc: PropTypes.object,
-  model: PropTypes.object,
-  currentUser: PropTypes.string,
-  ready: PropTypes.bool.isRequired,
-};
-
-/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-export default withTracker(({ match }) => {
-  // Get the documentID from the URL field. See imports/ui/layouts/App.jsx for the route containing :_id.
-  const documentId = match.params.email;
-  // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Profiles');
-  return {
-    doc: Profiles.findOne({ email: documentId }),
-    currentUser: Meteor.user() ? Meteor.user().username : '',
-    ready: subscription.ready(),
-  };
-})(CreateProfile);
+export default CreateProfile;
