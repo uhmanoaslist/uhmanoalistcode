@@ -34,10 +34,7 @@ class AddReport extends React.Component {
 
   /** On submit, insert the data. */
   submit(data) {
-    const { description } = data;
-    const seller = this.props.doc.seller;
-    const item = this.props.doc._id;
-    const itemName = this.props.doc.name;
+    const { description, seller, item, itemName } = data;
     Reports.insert({ description, seller, item, itemName }, this.insertCallback);
   }
 
@@ -51,9 +48,9 @@ class AddReport extends React.Component {
               <Segment>
                 <TextField name='description'/>
                 <ErrorsField/>
-                <HiddenField name='seller' value='fakeuser@foo.com'/>
-                <HiddenField name='item' value='fakeitem'/>
-                <HiddenField name='itemName' value='fakeitemname'/>
+                <HiddenField name='seller' value={this.props.doc.seller}/>
+                <HiddenField name='item' value={this.props.doc._id}/>
+                <HiddenField name='itemName' value={this.props.doc.name}/>
               </Segment>
             </AutoForm>
           </Grid.Column>
@@ -65,7 +62,6 @@ class AddReport extends React.Component {
 /** Require the presence of a Stuff document in the props object. Uniforms adds 'model' to the props, which we use. */
 AddReport.propTypes = {
   doc: PropTypes.object,
-  model: PropTypes.object,
   ready: PropTypes.bool.isRequired,
 };
 
