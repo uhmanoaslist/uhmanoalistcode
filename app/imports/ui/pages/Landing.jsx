@@ -5,12 +5,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
     return (
-
         <div className='uhmanoaslist-landing-page'>
           <Grid container stackable centered columns={1}>
 

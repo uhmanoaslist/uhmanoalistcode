@@ -7,9 +7,14 @@
 .header {
   font-size: 40pt;
   color: black;
+  font-family: "Bangla MN", monospace;
 }
 
 .header2 {
   font-size: 30pt;
   color: black;
+}
+
+.landing {
+  font-family: "gubblebum-blocky", monospace;
 }
