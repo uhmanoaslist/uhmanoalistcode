@@ -21,10 +21,12 @@ class Item extends React.Component {
         <Container>
           <Header as="h1">{this.props.doc.name}</Header>
           <Grid>
-            <Grid.Column width={6}>
+            <Grid.Column width={7}>
               <Image src={this.props.doc.image} size='big'/>
+              <br/>
+              Description: {this.props.doc.description}
             </Grid.Column>
-            <Grid.Column width={10}>
+            <Grid.Column width={9}>
               Price: <Header as="h2">{this.props.doc.price}</Header>
               <Header as="h3">Contact Information:</Header>
               Username: {this.props.seller.username}
@@ -37,12 +39,11 @@ class Item extends React.Component {
               <br/>
               <Link to={`/user/${this.props.doc.seller}`}>{this.props.seller.username} Profile Page</Link>
               <br/>
+              <Header as="h5">If you want to buy this item, contact the seller!</Header>
               <br/>
-              Description: {this.props.doc.description}
+              Category: {this.props.doc.category}
             </Grid.Column>
           </Grid>
-          <br/>
-          Category: {this.props.doc.category}
         </Container>
     );
   }
