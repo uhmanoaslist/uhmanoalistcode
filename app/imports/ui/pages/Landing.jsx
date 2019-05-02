@@ -1,14 +1,32 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Button, Link } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Menu } from 'semantic-ui-react/dist/commonjs/collections/Menu';
+import { Dropdown } from 'semantic-ui-react/dist/commonjs/modules/Dropdown';
 
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
   render() {
+
+    if (this.props.currentUser) {
+      return (
+
+          <div className='uhmanoaslist-landing-page'>
+            <Grid container stackable centered columns={1}>
+
+              <Grid.Column textAlign='center'>
+                <h1 className='header' inverted>Welcome to UHManoasList</h1>
+                <div>
+                </div>
+              </Grid.Column>
+            </Grid>
+          </div>
+      );
+    }
     return (
 
         <div className='uhmanoaslist-landing-page'>
@@ -16,7 +34,14 @@ class Landing extends React.Component {
 
             <Grid.Column textAlign='center'>
               <h1 className='header' inverted>Welcome to UHManoasList</h1>
-              <h3 className='header2' inverted>Log in to sell and buy items!</h3>
+              <h3 className='header2' inverted>Sign up or Log in to buy and sell items!</h3>
+              <div>
+                <Button.Group>
+                  <Button as={NavLink} exact to="/signup" positive>Sign Up</Button>
+                  <Button.Or />
+                  <Button as={NavLink} exact to="/signin" positive>Log In</Button>
+                </Button.Group>
+              </div>
             </Grid.Column>
           </Grid>
         </div>
