@@ -18,9 +18,10 @@ import UserProfile from '../pages/UserProfile';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
-import Report from '../pages/Report';
+import Report from '../pages/AddReport';
 import Signout from '../pages/Signout';
 import ListReports from '../pages/ListReports';
+import CreateProfile from '../pages/CreateProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -40,9 +41,10 @@ class App extends React.Component {
               <AdminProtectedRoute path="/admin" component={ListListingAdmin}/>
               <ProtectedRoute path="/edit/:_id" component={EditListing}/>
               <ProtectedRoute path="/editprofile/:email" component={EditProfile}/>
+              <ProtectedRoute path="/createprofile/_id" component={CreateProfile}/>
               <ProtectedRoute path="/view/:_id" component={Item}/>
               <AdminProtectedRoute path="/adminreports" component={ListReports}/>
-              <ProtectedRoute path="/report" component={Report}/>
+              <ProtectedRoute path="/report/:_id" component={Report}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>

@@ -9,6 +9,8 @@ const Reports = new Mongo.Collection('Reports');
 const ReportSchema = new SimpleSchema({
   seller: String,
   description: String,
+  item: String,
+  itemName: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

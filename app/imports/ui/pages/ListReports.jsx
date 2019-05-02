@@ -24,6 +24,7 @@ class ListReports extends React.Component {
               <Table.Row>
                 <Table.HeaderCell>Seller</Table.HeaderCell>
                 <Table.HeaderCell>Description</Table.HeaderCell>
+                <Table.HeaderCell>Item</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

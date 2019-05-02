@@ -29,7 +29,7 @@ export default class Signup extends React.Component {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        // browserHistory.push('/login');
+
       }
     });
   }
@@ -63,7 +63,7 @@ export default class Signup extends React.Component {
                       type="password"
                       onChange={this.handleChange}
                   />
-                  <Form.Button content="Submit"/>
+                   <Form.Button content="Submit"/>
                 </Segment>
               </Form>
               <Message>
