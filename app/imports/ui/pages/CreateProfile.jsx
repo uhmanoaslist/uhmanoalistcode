@@ -27,7 +27,7 @@ class CreateProfile extends React.Component {
     if (error) {
       Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
     } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      Bert.alert({ type: 'success', message: 'Profile created' });
       this.formRef.reset();
       this.setState({ redirectToReferer: true });
     }
