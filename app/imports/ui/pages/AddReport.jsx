@@ -25,9 +25,9 @@ class AddReport extends React.Component {
   /** Notify the user of the results of the submit. If successful, clear the form. */
   insertCallback(error) {
     if (error) {
-      Bert.alert({ type: 'danger', message: `Add failed: ${error.message}` });
+      Bert.alert({ type: 'danger', message: `Report failed: ${error.message}` });
     } else {
-      Bert.alert({ type: 'success', message: 'Add succeeded' });
+      Bert.alert({ type: 'success', message: 'Report succeeded' });
       this.formRef.reset();
     }
   }

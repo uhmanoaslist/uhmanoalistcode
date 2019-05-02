@@ -6,13 +6,14 @@ import { withRouter, Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Listings } from '/imports/api/listing/listing';
+import { Roles } from 'meteor/alanning:roles';
+
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Listing extends React.Component {
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
     this.deleteCallback = this.deleteCallback.bind(this);
-    this.formRef = null;
   }
 
   /** Notify the user of the results of the submit. If successful, clear the form. */
@@ -21,7 +22,6 @@ class Listing extends React.Component {
       Bert.alert({ type: 'danger', message: `Delete failed: ${error.message}` });
     } else {
       Bert.alert({ type: 'success', message: 'Delete succeeded' });
-      this.formRef.reset();
     }
   }
 
@@ -48,6 +48,27 @@ class Listing extends React.Component {
             </Card.Content>
             <Card.Content extra>
               <Link to={`/edit/${this.props.listing._id}`}>Edit</Link>
+            </Card.Content>
+            <Card.Content extra>
+              <Button basic onClick={this.onClick}>Delete</Button>
+            </Card.Content>
+          </Card>
+      );
+    }
+    if (this.props.currentUser !== this.props.listing.seller && Roles.userIsInRole(Meteor.userId(), 'admin')) {
+      return (
+          <Card centered>
+            <Card.Content>
+              <Image floated='center' size='large' src={this.props.listing.image}/>
+              <Card.Header>{this.props.listing.name} </Card.Header>
+              <Card.Meta> ${this.props.listing.price}</Card.Meta>
+              <Card.Meta>{this.props.listing.seller}</Card.Meta>
+              <Card.Description>
+                {this.props.listing.description}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <Link to={`/view/${this.props.listing._id}`}>View</Link>
             </Card.Content>
             <Card.Content extra>
               <Button basic onClick={this.onClick}>Delete</Button>
