@@ -29,6 +29,7 @@ export default class Signup extends React.Component {
       if (err) {
         this.setState({ error: err.reason });
       } else {
+
       }
     });
   }

@@ -38,7 +38,7 @@ class AddReport extends React.Component {
     const seller = this.props.doc.seller;
     const item = this.props.doc._id;
     const itemName = this.props.doc.name;
-    Reports.insert({ description, seller, item, itemName}, this.insertCallback);
+    Reports.insert({ description, seller, item, itemName }, this.insertCallback);
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
