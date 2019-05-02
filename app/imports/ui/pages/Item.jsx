@@ -63,7 +63,6 @@ export default withTracker(({ match }) => {
   const subscription = Meteor.subscribe('Listings');
   const subscription2 = Meteor.subscribe('Profiles');
   const item = Listings.findOne(documentId);
-  console.log(item);
   if (item !== undefined) {
     return {
       doc: item,
@@ -71,4 +70,9 @@ export default withTracker(({ match }) => {
       ready: (subscription.ready() && subscription2.ready()),
     };
   }
+  return {
+    doc: {},
+    seller: {},
+    ready: (subscription.ready() && subscription2.ready()),
+  };
 })(Item);
