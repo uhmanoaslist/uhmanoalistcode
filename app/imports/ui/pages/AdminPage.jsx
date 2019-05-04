@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Table, Header, Loader } from 'semantic-ui-react';
-import { Reports, ReportSchema } from '/imports/api/report/report';
+import { Reports } from '/imports/api/report/report';
 import Report from '/imports/ui/components/Report';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
