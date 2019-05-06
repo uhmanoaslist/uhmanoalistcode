@@ -1,8 +1,8 @@
 import React from 'react';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid, Button, Header, Container } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
@@ -18,6 +18,51 @@ class Landing extends React.Component {
 
               <Grid.Column textAlign='center'>
                 <h1 className='header' inverted>Welcome to UHManoasList</h1>
+                <Container>
+                  <Header as="h2" textAlign="center">Categories</Header>
+                  <Grid columns={2} divided>
+                    <Grid.Row>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Furniture'}>Furniture</Link>
+                      </Grid.Column>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Textbooks'}>Textbooks</Link>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/School_Supplies'}>School Supplies</Link>
+                      </Grid.Column>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Transportation'}>Transportation</Link>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Electronics'}>Electronics</Link>
+                      </Grid.Column>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Electronic Accessories'}>Electronic Accessories</Link>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Mens Clothing'}>Mens Clothing</Link>
+                      </Grid.Column>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Womens Clothing'}>Womens Clothing</Link>
+                      </Grid.Column>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Sporting Goods'}>Sporting Goods</Link>
+                      </Grid.Column>
+                      <Grid.Column textAlign="center">
+                        <Link to={'/category/Miscellaneous'}>Miscellaneous</Link>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Grid>
+                </Container>
                 <div>
                 </div>
               </Grid.Column>
