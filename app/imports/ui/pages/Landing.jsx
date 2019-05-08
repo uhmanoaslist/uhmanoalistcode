@@ -1,12 +1,9 @@
 import React from 'react';
-import { Grid, Button, Link } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Menu } from 'semantic-ui-react/dist/commonjs/collections/Menu';
-import { Dropdown } from 'semantic-ui-react/dist/commonjs/modules/Dropdown';
-
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
